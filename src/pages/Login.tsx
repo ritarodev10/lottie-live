@@ -59,32 +59,39 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen bg-white overscroll-none">
-      <div className="flex flex-col -mt-10 items-center justify-center ">
-        <Lottie
-          loop
-          play
-          animationData={lottieLogin}
-          style={{ width: "300px", height: "auto" }}
-          className="mb-4 rounded-md"
-        />
-        <div className="w-full max-w-xs -mt-10 z-10">
-          <div className="mb-4">
-            <input
-              type="text"
-              id="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Enter your name"
-            />
+    <div className="login flex items-center justify-center h-screen  overscroll-none">
+      <div
+        className="h-[70%] w-[50%] flex justify-center items-center rounded-3xl backdrop-filter backdrop-blur-lg bg-white bg-opacity-[0.95]"
+        style={{
+          boxShadow: "rgba(17, 12, 46, 0.15) 0px 48px 100px 0px",
+        }}
+      >
+        <div className="flex flex-col items-center -mt-10 justify-center">
+          <Lottie
+            loop
+            play
+            animationData={lottieLogin}
+            style={{ width: "300px", height: "auto" }}
+            className="mb-4 rounded-md"
+          />
+          <div className="w-full max-w-xs -mt-10 z-10">
+            <div className="mb-4">
+              <input
+                type="text"
+                id="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 "
+                placeholder="Enter your name"
+              />
+            </div>
+            <button
+              onClick={handleLogin}
+              className="w-full bg-[#3FE1E4] text-white py-2 px-4 rounded-md hover:shadow-md transition-all"
+            >
+              Login
+            </button>
           </div>
-          <button
-            onClick={handleLogin}
-            className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
-          >
-            Login
-          </button>
         </div>
       </div>
     </div>

@@ -15,7 +15,6 @@ const LayerItem: React.FC<{ layer: Layer }> = ({ layer }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { selectedLayer, selectedShape, setSelectedLayer, setSelectedShape } =
     useAnimationStore();
-  console.log("🚀 ~ selectedShape:", selectedShape);
 
   const handleToggle = () => {
     setIsOpen(!isOpen);
@@ -71,7 +70,7 @@ const LayerItem: React.FC<{ layer: Layer }> = ({ layer }) => {
           <span className="w-4" />
         )}
         {renderIcon()}
-        <span className="ml-2">{layer.nm}</span>
+        <span className="ml-2 text-sm">{layer.nm}</span>
       </div>
       {isOpen && layer.shapes && (
         <div className="pl-2">
@@ -87,7 +86,7 @@ const LayerItem: React.FC<{ layer: Layer }> = ({ layer }) => {
               }}
             >
               <Frame size={16} />
-              <span className="ml-2">{shape.nm}</span>
+              <span className="ml-2 text-sm">{shape.nm}</span>
             </div>
           ))}
         </div>

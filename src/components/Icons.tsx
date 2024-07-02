@@ -9,7 +9,7 @@ export type IconProps = {
 };
 
 export const PlayIcon: React.FC<IconProps> = ({
-  fill = "#63727e",
+  fill = "#4f565b",
   size = 32,
   className,
   style,
@@ -33,7 +33,7 @@ export const PlayIcon: React.FC<IconProps> = ({
 };
 
 export const PauseIcon: React.FC<IconProps> = ({
-  fill = "#63727e",
+  fill = "#4f565b",
   size = 32,
   className,
   style,
@@ -57,7 +57,7 @@ export const PauseIcon: React.FC<IconProps> = ({
 };
 
 export const BrowseIcon: React.FC<IconProps> = ({
-  fill = "#63727e",
+  fill = "#4f565b",
   size = 32,
   className,
   style,
@@ -86,7 +86,7 @@ export const BrowseIcon: React.FC<IconProps> = ({
 };
 
 export const LoopIcon: React.FC<IconProps> = ({
-  fill = "#63727e",
+  fill = "#4f565b",
   size = 32,
   className,
   style,

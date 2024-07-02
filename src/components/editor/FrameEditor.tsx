@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { db } from "../../firebaseConfig";
-import { ref, get } from "firebase/database";
+import { ref, onValue } from "firebase/database";
 import Lottie from "react-lottie-player";
 import { useAnimationStore } from "../../stores/lottie.store";
 import { LottieAnimationData } from "../../types/lottie.type";
@@ -24,28 +24,24 @@ const FrameEditor: React.FC = () => {
   } = useAnimationStore();
 
   useEffect(() => {
-    const fetchAnimationData = async () => {
-      if (projectId) {
-        const projectRef = ref(db, `projects/${projectId}`);
-        try {
-          const snapshot = await get(projectRef);
-          if (snapshot.exists()) {
-            const projectData = snapshot.val();
-            setAnimationData(projectData.jsonContent);
-            setTotalFrames(
-              projectData.jsonContent.op - projectData.jsonContent.ip
-            );
-            setFrameRate(projectData.jsonContent.fr);
-          } else {
-            console.error("Project not found");
-          }
-        } catch (error) {
-          console.error("Error fetching project data:", error);
-        }
-      }
-    };
+    if (projectId) {
+      const projectRef = ref(db, `projects/${projectId}`);
 
-    fetchAnimationData();
+      const unsubscribe = onValue(projectRef, (snapshot) => {
+        if (snapshot.exists()) {
+          const projectData = snapshot.val();
+          setAnimationData(projectData.jsonContent);
+          setTotalFrames(
+            projectData.jsonContent.op - projectData.jsonContent.ip
+          );
+          setFrameRate(projectData.jsonContent.fr);
+        } else {
+          console.error("Project not found");
+        }
+      });
+
+      return () => unsubscribe();
+    }
   }, [projectId, setTotalFrames, setFrameRate]);
 
   const commonStyles: React.CSSProperties = {

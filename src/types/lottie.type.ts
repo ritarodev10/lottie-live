@@ -52,15 +52,25 @@ export type Transform = {
 
 // Property Type Definition
 export type Property = {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   k: any[]; // Keyframes or static value
+  a?: number; // Animation flag
+  ix?: number; // Index
 };
 
 // Shape Type Definition
 export type Shape = {
   ty: string; // Type of shape (e.g., 'rect', 'circle', 'path')
-  ks: Property; // Shape properties
+  ks?: Property; // Shape properties
   nm: string; // Name of the shape
+  c?: Property; // Color property, used in fill and stroke
+  it?: Shape[]; // Nested shapes for group shapes
+  bm?: number; // Blend mode
+  hd?: boolean; // Hidden flag
+  d?: number; // Direction
+  cix?: number; // Content index
+  p?: Property; // Position
+  r?: Property; // Rotation
+  s?: Property; // Scale
 };
 
 // Text Type Definition

@@ -45,11 +45,11 @@ const Timeline = () => {
               {isPlaying ? <PauseIcon /> : <PlayIcon />}
             </div>
             <div onClick={handleToggleLoop}>
-              <LoopIcon fill={isLooping ? "#63727e" : "#b4babf"} />
+              <LoopIcon fill={isLooping ? "#4f565b" : "#b4babf"} />
             </div>
             <div className="flex items-center justify-center w-8 h-8">
               <div
-                className="cursor-pointer flex justify-center items-center w-[27px] h-[27px] rounded-full font-semibold bg-[#63727e] text-white"
+                className="cursor-pointer flex justify-center items-center w-[27px] h-[27px] rounded-full font-semibold bg-[#4f565b] text-white"
                 onClick={handleTogglePlaybackRate}
               >
                 {playbackRate}x
