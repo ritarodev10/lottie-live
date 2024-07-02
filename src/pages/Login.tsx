@@ -5,6 +5,7 @@ import { db } from "../firebaseConfig";
 import { ref, set, get, update } from "firebase/database";
 import Lottie from "react-lottie-player";
 import lottieLogin from "../assets/login-lottie.json";
+import lottieGithub from "../assets/github-lottie.json";
 import { UserData } from "../types/common.type";
 
 const Login: React.FC = () => {
@@ -91,6 +92,21 @@ const Login: React.FC = () => {
             >
               Login
             </button>
+            <a
+              href="https://github.com/ritarodev10/lottie-live"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm flex gap-2 font-semibold items-center w-full h-fit justify-center mt-8"
+            >
+              <Lottie
+                loop
+                play
+                animationData={lottieGithub}
+                style={{ width: "40px", height: "40px" }}
+                className="mb-4 mt-3 rounded-md flex items-center justify-center"
+              />
+              GITHUB REPO HERE
+            </a>
           </div>
         </div>
       </div>
