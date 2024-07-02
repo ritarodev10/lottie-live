@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
-import { addChatMessage, getChatMessages } from "../../lib/chat.utils";
-import { ChatMessage } from "../../types/chat.type";
-import { db } from "../../firebaseConfig";
+import { addChatMessage, getChatMessages } from "../../../lib/chat.utils";
+import { ChatMessage } from "../../../types/chat.type";
+import { db } from "../../../firebaseConfig";
 import { ref, onChildAdded, off } from "firebase/database";
 
 const ChatBox: React.FC = () => {
@@ -93,12 +93,12 @@ const ChatBox: React.FC = () => {
     <div className="w-64 absolute right-0 bg-white h-full">
       <div className="w-full h-full flex flex-col px-2">
         <div className="py-3 text-center font-semibold border-b">Chat Box</div>
-        <div className="flex-1 flex flex-col gap-4 overflow-y-auto mb-2 w-full">
-          <div className="flex-1 flex flex-col gap-4 overflow-y-auto mb-2 w-full">
+        <div className="flex-1 flex flex-col overflow-y-auto mb-2 w-full">
+          <div className="flex-1 flex flex-col gap-2 overflow-y-auto mb-2 w-full">
             {messages.map((msg) => (
               <div
                 key={msg.messageId}
-                className={`flex flex-col px-2 py-2 text-sm w-fit max-w-full border ${
+                className={`flex flex-col px-2 py-2 text-sm w-fit max-w-full mt-2 break-words ${
                   msg.senderId === userId
                     ? "bg-[#3FE1E4] text-white self-end"
                     : "bg-gray-100 text-black self-start"
