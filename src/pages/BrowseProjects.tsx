@@ -100,7 +100,6 @@ const BrowseProjects: React.FC = () => {
 
   const handleAnimationClick = async (
     name: string,
-    id: string,
     animationData: LottieAnimationData
   ) => {
     const userId = sessionStorage.getItem("userId");
@@ -162,11 +161,7 @@ const BrowseProjects: React.FC = () => {
                 key={node.id}
                 className="bg-white p-4 rounded-lg shadow-md cursor-pointer"
                 onClick={() =>
-                  handleAnimationClick(
-                    node.name,
-                    node.id,
-                    animationsData[node.id]
-                  )
+                  handleAnimationClick(node.name, animationsData[node.id])
                 }
               >
                 {animationsData[node.id] ? (
