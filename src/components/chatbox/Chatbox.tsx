@@ -27,6 +27,7 @@ const ChatBox: React.FC<{ projectId: string }> = ({ projectId }) => {
     fetchMessages();
 
     const messagesRef = ref(db, `projects/${projectId}/chatMessages`);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const handleNewMessage = (snapshot: any) => {
       const newMessage = snapshot.val();
       setMessages((prevMessages) => [...prevMessages, newMessage]);
