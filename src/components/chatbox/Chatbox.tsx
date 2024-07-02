@@ -4,7 +4,7 @@ import { ChatMessage } from "../../types/chat.type";
 import { db } from "../../firebaseConfig";
 import { ref, onChildAdded, off } from "firebase/database";
 
-const ChatBox: React.FC<{ projectId: string }> = ({ projectId }) => {
+const ChatBox: React.FC = () => {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [newMessage, setNewMessage] = useState<string>("");
   const [userId, setUserId] = useState<string | null>(null);
@@ -15,30 +15,34 @@ const ChatBox: React.FC<{ projectId: string }> = ({ projectId }) => {
   useEffect(() => {
     const fetchedUserId = sessionStorage.getItem("userId");
     const fetchedUserName = sessionStorage.getItem("userName");
+    const searchParams = new URLSearchParams(window.location.search);
+    const projectId = searchParams.get("projectId");
 
     setUserId(fetchedUserId);
     setUserName(fetchedUserName);
 
-    const fetchMessages = async () => {
-      const chatMessages = await getChatMessages(projectId);
-      setMessages(chatMessages);
-      assignColors(chatMessages);
-    };
-    fetchMessages();
+    if (projectId) {
+      const fetchMessages = async () => {
+        const chatMessages = await getChatMessages(projectId);
+        setMessages(chatMessages);
+        assignColors(chatMessages);
+      };
+      fetchMessages();
 
-    const messagesRef = ref(db, `projects/${projectId}/chatMessages`);
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const handleNewMessage = (snapshot: any) => {
-      const newMessage = snapshot.val();
-      setMessages((prevMessages) => [...prevMessages, newMessage]);
-    };
+      const messagesRef = ref(db, `projects/${projectId}/chatMessages`);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const handleNewMessage = (snapshot: any) => {
+        const newMessage = snapshot.val();
+        setMessages((prevMessages) => [...prevMessages, newMessage]);
+      };
 
-    onChildAdded(messagesRef, handleNewMessage);
+      onChildAdded(messagesRef, handleNewMessage);
 
-    return () => {
-      off(messagesRef, "child_added", handleNewMessage);
-    };
-  }, [projectId]);
+      return () => {
+        off(messagesRef, "child_added", handleNewMessage);
+      };
+    }
+  }, []);
 
   useEffect(() => {
     if (messagesEndRef.current) {
@@ -61,7 +65,10 @@ const ChatBox: React.FC<{ projectId: string }> = ({ projectId }) => {
   };
 
   const handleSendMessage = async () => {
-    if (newMessage.trim() === "" || !userId || !userName) return;
+    const searchParams = new URLSearchParams(window.location.search);
+    const projectId = searchParams.get("projectId");
+
+    if (newMessage.trim() === "" || !userId || !userName || !projectId) return;
 
     const message: ChatMessage = {
       messageId: "",
