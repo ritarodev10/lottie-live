@@ -1,5 +1,4 @@
 import React from "react";
-
 interface InfoTabProps {
   animationName: string;
   duration: number;

@@ -1,4 +1,3 @@
-import React from "react";
 import FrameEditor from "./FrameEditor";
 
 const Canvas = () => {

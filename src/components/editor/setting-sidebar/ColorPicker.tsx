@@ -4,7 +4,7 @@ import useClickOutside from "../../../hooks/useClickOutside";
 
 interface ColorPickerProps {
   color: string;
-  position: { top: number; left: number };
+  position: { top: number };
   onChangeComplete: (color: ColorResult) => void;
   onClose: () => void;
 }
@@ -23,7 +23,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({
     <div
       ref={pickerRef}
       className="absolute z-50"
-      style={{ top: position.top, left: position.left }}
+      style={{ top: position.top }}
     >
       <SketchPicker color={color} onChangeComplete={onChangeComplete} />
     </div>

@@ -52,6 +52,7 @@ export type Transform = {
 
 // Property Type Definition
 export type Property = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   k: any[]; // Keyframes or static value
   a?: number; // Animation flag
   ix?: number; // Index
